@@ -153,7 +153,35 @@ nav li {
 	opacity:0.9;
   	filter:alpha(opacity=50);
 }
+/*.my-form-container{
+	max-width: 300px;
+  padding: 10px;
+  background-color: white;
+}*/
 
+.myformPopup{
+	background-color: white;
+  display: none;
+  position:relative;
+  bottom: 0;
+  right: 15px;
+  border: 3px solid #f1f1f1;
+  z-index: 9;
+  opacity: 1;
+  	max-width: 500px;
+  margin-left:40px;
+}
+.open-button {
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  opacity: 0.8;
+  /*position: fixed;*/
+  bottom: 23px;
+  right: 28px;
+  width: 280px;
+}
         /* PRE FOOTER COMMENT SECTION */
 
 .section2{
