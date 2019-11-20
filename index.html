@@ -12,6 +12,8 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet">
 
+	<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+
 </head>
 <body>
 	<!---------------------------------------- HEADER SECTION ------------------------------------->
@@ -310,7 +312,53 @@
 				<h3>Here are the product's cost and the total cost:</h3>
 				<ul id="costL">
 				</ul>
+				<button onclick="openForm()" class="btn btn-warning open-button">Card payment</button>
 				<p id="totalCost"></p>
+				<!-- Popup Payment Form -->
+				<div class="container myformPopup" id="myForm">
+					<div class="panel-heading">
+	                    <h3 class="panel-title">
+	                        Payment Details
+	                    </h3>
+	                    <div class="checkbox pull-right">
+	                        <label>
+	                            <input type="checkbox" />
+	                            Remember
+	                        </label>
+	                    </div>
+	                </div>
+					<form>
+					  	<div class="form-group">
+						<label for="exampleInputEmail1">CARD NUMBER</label>
+						<div class="input-group">
+							<input type="text" class="form-control" id="cardNumber" placeholder="Valid Card Number"
+                                required autofocus />
+                            <span class="input-group-addon">
+                            	<span class="glyphicon glyphicon-lock"></span></span>
+                            <p>
+							<small id="emailHelp" class="form-text text-muted">We'll never share your credit card details with anyone else.</small></p>
+						</div>
+						<div class="form-group">
+						    <label >EXPIRY DATE</label>
+						    <div>
+                                <input type="text" class="form-control" id="expityMonth" placeholder="MM" required />
+                            </div>
+                            <div >
+                                <input type="text" class="form-control" id="expityYear" placeholder="YY" required />
+                            </div>
+						  	</div>
+                           	<div class="form-group">
+                               <label for="cvCode">
+                                    CV CODE</label>
+                                <input type="password" class="form-control" id="cvCode" placeholder="CV" required />
+                            </div>
+                        <p>The final payment is:<span id="finalpay"></span></p>
+						<a href="https://johnrice0174.github.io/candyshop.hcktn1/" class="btn btn-success btn-lg btn-block" role="button">Pay</a>
+				        <button type="submit" class="btn cancel" onclick="closeForm()">Close</button>
+					</form>
+					</div>
+				</div>
+
 			</div>
 		</div>
 	</section>
@@ -347,7 +395,7 @@
 		  	<div class="col col-md-3">
 		  		<div style="color: azure;text-align: center;font-size: 50px;">
 		  			<p>Follow Us</p>
-		  			<p><i class="fa fa-github" aria-hidden="true"></i> <i class="fa fa-linkedin-square" aria-hidden="true"></i> <i class="fa fa-facebook-square" aria-hidden="true"></i></p>
+		  			<p><a href="https://github.com/Johnrice0174"><i class="fa fa-github" aria-hidden="true"></i></a> <a href="https://www.linkedin.com/in/adrian-kugler-dury-6b8b74195/"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a> <a href="https://www.facebook.com/AJKD-RAP-Officiel-559080327480345/"><i class="fa fa-facebook-square" aria-hidden="true"></i></a></p>
 		  		</div>
 		  	</div>
 		  	<div class="verticalLine col-md-1"></div>
@@ -364,6 +412,8 @@
 	</div>
 
 	<!----------------------------------------- SCRIPT ------------------------------------>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
@@ -430,12 +480,15 @@ toggleButton.addEventListener('click', () => {
 				e.stopPropagation();
 				total.value=sum;
 				console.log(sum);
+				var final=document.getElementById("finalpay");
+				final.innerText=sum;
 			}
 		})
  		var text=document.createElement('span');
  		text.innerText="Your Balance: ";
  		list2.appendChild(text);
 		list2.appendChild(total);
+
 
 		function f_suppr(x){
 	   		x.parentNode.remove();
@@ -445,7 +498,13 @@ toggleButton.addEventListener('click', () => {
 	   		total.value=sum;
 		}
 
+		function openForm() {
+  document.getElementById("myForm").style.display = "block";
+}
 
+function closeForm() {
+  document.getElementById("myForm").style.display = "none";
+} 
 		//COMMENTS ADDED FUNCTION
 		const addComment = ()=>{
 			var inputName=document.getElementById('input-name').value;
